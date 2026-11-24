@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "source": "MEASURED",
+  "raid_level": 1,
+  "member_capacity_mib": 4,
+  "batch_blocks": 16,
+  "repetitions": 1,
+  "seed": 14024,
+  "runtime_seconds": 120,
+  "conditions": ["DEGRADED_ONLY", "FULL_SPEED", "FIXED_THROTTLE", "ADAPTIVE"],
+  "loads": [
+    {"name": "IDLE", "phases": [{"duration_ms": 900, "offered_iops": 0}]},
+    {"name": "SATURATION", "phases": [{"duration_ms": 900, "offered_iops": 400}]},
+    {"name": "MEDIUM", "phases": [{"duration_ms": 900, "offered_iops": 70}]}
+  ],
+  "design_note": "Pilot only. Set fixed delay once using unpaced idle time divided by 127 inter-batch waits. Base main offer on observed degraded completion rate."
+}

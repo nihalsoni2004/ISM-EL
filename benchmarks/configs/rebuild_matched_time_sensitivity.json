@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source": "MEASURED",
+  "raid_level": 1,
+  "member_capacity_mib": 4,
+  "batch_blocks": 16,
+  "repetitions": 5,
+  "seed": 14024,
+  "runtime_seconds": 150,
+  "conditions": ["FIXED_THROTTLE", "ADAPTIVE"],
+  "loads": [{"name": "MEDIUM", "phases": [{"duration_ms": 1300, "offered_iops": 85}]}],
+  "scheduling": {"fixed_delay_us": 1000},
+  "design_note": "Secondary sensitivity after the primary study. A single 1 ms fixed-delay candidate tests whether mean completion times can match within 10% at 85 offered IOPS. The primary fixed setting remains 12.7 ms."
+}

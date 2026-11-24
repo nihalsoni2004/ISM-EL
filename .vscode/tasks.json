@@ -1,0 +1,119 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake Configure",
+      "type": "process",
+      "command": "cmake",
+      "args": [
+        "--preset",
+        "msvc-debug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake Build Debug",
+      "type": "process",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "--preset",
+        "msvc-debug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": "$msCompile",
+      "dependsOn": "CMake Configure",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "CMake Build Release",
+      "type": "process",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "--preset",
+        "msvc-release"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": "$msCompile",
+      "dependsOn": "CMake Configure",
+      "group": "build"
+    },
+    {
+      "label": "Run RAID Simulator",
+      "type": "process",
+      "command": "${workspaceFolder}/build/msvc-debug/Debug/raid_simulator.exe",
+      "args": [
+        "--status"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "dependsOn": "CMake Build Debug"
+    },
+    {
+      "label": "Run C++ Tests",
+      "type": "process",
+      "command": "ctest",
+      "args": [
+        "--preset",
+        "msvc-debug",
+        "--output-on-failure"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "dependsOn": "CMake Build Debug",
+      "group": "test"
+    },
+    {
+      "label": "Backend: Install Dependencies",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pip", "install", "-r", "backend/requirements.txt"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: Run FastAPI",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "backend.app"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "dependsOn": "CMake Build Debug",
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: Run Tests",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pytest", "backend/tests", "-v"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "dependsOn": "CMake Build Debug",
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Backend: Verify C++ IPC",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pytest", "backend/tests/test_ipc.py", "-v"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "dependsOn": "CMake Build Debug",
+      "problemMatcher": [],
+      "group": "test"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "benchmark_name": "thin_overwrite",
+  "raid_level": 5,
+  "capacity_mode": "EQUAL_RAW",
+  "target_capacity_mib": 32,
+  "footprint_blocks": 1536,
+  "operation_count": 64,
+  "warmup_operations": 8,
+  "repetitions": 5,
+  "seed": 12345,
+  "queue_depth": 1,
+  "validation": "SAMPLED",
+  "source": "MEASURED",
+  "limits": {
+    "max_image_mib": 64,
+    "max_disks": 8,
+    "max_operations": 10000,
+    "max_raw_csv_bytes": 16777216,
+    "timeout_seconds": 240
+  },
+  "workload": "THIN_OVERWRITE"
+}

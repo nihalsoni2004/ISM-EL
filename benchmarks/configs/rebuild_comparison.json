@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": "MEASURED",
+  "raid_level": 1,
+  "member_capacity_mib": 4,
+  "batch_blocks": 16,
+  "repetitions": 5,
+  "seed": 14024,
+  "runtime_seconds": 650,
+  "conditions": [
+    "DEGRADED_ONLY",
+    "FULL_SPEED",
+    "FIXED_THROTTLE",
+    "ADAPTIVE"
+  ],
+  "loads": [
+    {
+      "name": "IDLE",
+      "phases": [
+        {
+          "duration_ms": 1300,
+          "offered_iops": 0
+        }
+      ]
+    },
+    {
+      "name": "LIGHT",
+      "phases": [
+        {
+          "duration_ms": 1300,
+          "offered_iops": 40
+        }
+      ]
+    },
+    {
+      "name": "MEDIUM",
+      "phases": [
+        {
+          "duration_ms": 1300,
+          "offered_iops": 85
+        }
+      ]
+    },
+    {
+      "name": "HEAVY",
+      "phases": [
+        {
+          "duration_ms": 1300,
+          "offered_iops": 145
+        }
+      ]
+    }
+  ],
+  "scheduling": {
+    "fixed_delay_us": 12700,
+    "observation_window_ms": 250,
+    "control_interval_ms": 80,
+    "idle_ms": 200,
+    "target_read_p95_us": 8000,
+    "high_arrival_iops": 80,
+    "minimum_delay_us": 0,
+    "maximum_delay_us": 6000,
+    "delay_step_us": 1000
+  },
+  "design_note": "Frozen after pilot. Approximately 25%, 50% and 85% of 170 degraded completions/s. Fixed delay 12.7 ms from 1.6088085 s / 127 idle pacing boundaries."
+}

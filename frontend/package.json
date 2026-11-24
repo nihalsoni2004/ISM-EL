@@ -1,0 +1,28 @@
+{
+  "name": "raid-simulator-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "test:browser": "node browser/smoke.mjs"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.90.5",
+    "lucide-react": "0.553.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "7.18.6"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "jsdom": "26.1.0",
+    "playwright-core": "1.65.1",
+    "vite": "^7.0.0",
+    "vitest": "5.1.1"
+  }
+}

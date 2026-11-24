@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": "MEASURED",
+  "benchmark_name": "faculty_raid5_short",
+  "raid_level": 5,
+  "capacity_mode": "EQUAL_RAW",
+  "target_capacity_mib": 8,
+  "footprint_blocks": 512,
+  "operation_count": 16,
+  "warmup_operations": 2,
+  "repetitions": 1,
+  "seed": 12345,
+  "queue_depth": 1,
+  "validation": "FULL",
+  "workload": "RANDOM_WRITE"
+}

@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug RAID Simulator",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/msvc-debug/Debug/raid_simulator.exe",
+      "args": [
+        "--status"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "preLaunchTask": "CMake Build Debug"
+    },
+    {
+      "name": "Debug FastAPI Backend",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "backend.app",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "preLaunchTask": "CMake Build Debug"
+    }
+  ]
+}
